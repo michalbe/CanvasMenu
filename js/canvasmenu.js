@@ -412,13 +412,13 @@ CM.Button.prototype.on = function (eventType, handler) {
 };
 
 CM.Menu.prototype.create = function (componentType, config) {
-		// capitalize the type of the component, so 'button' will became 'Button'
-		componentType = componentType.charAt(0).toUpperCase() + componentType.slice(1);
-		if (CM[componentType]){
-				var component = new CM[componentType](config);
-				this.add(component);
-					return component;
-		} else {
-				throw new Error("Component of " + componentType + " type not found");
-		}
+	// capitalize the type of the component, so 'button' will became 'Button'
+	componentType = componentType.charAt(0).toUpperCase() + componentType.slice(1);
+	if (CM[componentType]){
+		var component = new CM[componentType](config);
+		this.add(component);
+		return component;
+	} else {
+		throw new Error("Component of " + componentType + " type not found");
+	}
 };
