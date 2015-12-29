@@ -149,7 +149,7 @@ CM.Menu = function(config) {
 			window.requestAnimationFrame(self.run);
 		}
 	};
-}
+};
 
 CM.Menu.prototype.isVisible = function () {
 	return this.running;
@@ -412,7 +412,13 @@ CM.Button.prototype.on = function (eventType, handler) {
 };
 
 CM.Menu.prototype.create = function (componentType, config) {
-    var button = new CM.Button(config);
-    this.add(button);
-    return button;
+		// capitalize the type of the component, so 'button' will became 'Button'
+		componentType = componentType.charAt(0).toUpperCase() + componentType.slice(1);
+		if (CM[componentType]){
+				var component = new CM[componentType](config);
+				this.add(component);
+					return component;
+		} else {
+				throw new Error("Component of " + componentType + " type not found");
+		}
 };
